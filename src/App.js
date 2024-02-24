@@ -45,6 +45,7 @@ function App() {
         // Transaction sign frontend
         const FACTORY_CONTRACT = "0x568996c47EdF580D0734c7728004d7d51A7df260";
         const UUID = uuid();
+        console.log(UUID);
 
         const contract = new ethers.Contract(
             FACTORY_CONTRACT,
@@ -73,6 +74,7 @@ function App() {
         console.log("Transaction sign post body: ", {
             buyer,
             receiver,
+            uuid: UUID,
         });
 
         // Transaction sign backend
@@ -86,10 +88,10 @@ function App() {
             backProvider
         );
 
-        backContract.on("EscrowCreated", async (escrowAddress, uuid) => {
-            if (UUID === uuid) {
+        backContract.on("EscrowCreated", async (escrowAddress, escrowUUID) => {
+            if (UUID === escrowUUID) {
                 console.log("escrowAddress: ", escrowAddress);
-                console.log("uuid: ", uuid);
+                console.log("escrowUUID: ", escrowUUID);
             }
         });
     };
