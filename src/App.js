@@ -26,8 +26,7 @@ function App() {
         const message = {
             title: "title",
             content: "content",
-            image: "http://example.com",
-            price: ethers.utils.parseUnits("0.001", "ether"),
+            price: ethers.utils.parseUnits("0.001", "ether").toString(),
         };
 
         const signature = await signer.signMessage(JSON.stringify(message));
@@ -64,10 +63,10 @@ function App() {
                 seller,
                 receiver,
                 market,
-                ethers.utils.parseUnits("0.001", "ether"),
+                ethers.utils.parseUnits("0.001", "ether").toString(),
                 UUID,
             ]),
-            value: ethers.utils.parseUnits("0.001", "ether"),
+            value: ethers.utils.parseUnits("0.001", "ether").toString(),
             gasLimit: 3000000,
         };
         await signer.sendTransaction(transaction);
